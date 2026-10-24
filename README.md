@@ -1,5 +1,13 @@
 # Static IP Playbook
 
+## 给 Agent 的提示词
+
+把下面这段话直接发给你的 Agent：
+
+```text
+请安装并使用 static-ip-playbook 这个 skill：从 https://github.com/mxgarage/static-ip-playbook 把仓库克隆到本地，装进你的 skills 目录，然后按 SKILL.md 的流程帮我操作。先装前置 VPS；前置代理够用就停在这里，不要默认订阅静态 IP；只有模型订阅、海外社媒运营等需要住宅静态出口的特殊场景，才继续部署静态 IP。所有采购都从 skill 里给的链接开始，付款、登录、验证码这些步骤由我本人完成。
+```
+
 一套可复用的静态住宅 IP 操作手册：前置 VPS 安装、采购、验价、接线、健康检查、续命、排障。
 
 ## 里面有什么
