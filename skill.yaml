@@ -1,5 +1,5 @@
 name: "static-ip-playbook"
 title: "Static IP Playbook"
-description: "Install a front VPS, then procure, verify, connect, health check, and renew a dedicated static residential IP, including direct, split routing, and chained setups."
+description: "Install a front VPS, and only add a dedicated static residential IP when the scenario requires one, with direct, split routing, and chained setups."
 category: "Work and knowledge"
 include_in_prompt: true

@@ -1,5 +1,29 @@
 # Static IP Playbook
 
+## Decide whether a static IP is needed
+
+- Deploy the front VPS first. The front proxy alone covers general use, so stop after the front VPS deploy when no special scenario applies.
+
+- Do not order a static IP by default or speculatively. No static IP subscription happens unless a special scenario requires it.
+
+- Only continue to the static IP sections below when the scenario needs a residential static exit, such as model subscriptions, overseas social media account operations, and similar cases where the service checks IP type or region consistency.
+
+- When the scenario needs one, continue with the sections below in order, starting with the requirement and ending with the health check.
+
+## Install the front VPS first
+
+- The static IP chains behind a front VPS that the user owns. Buy and deploy the VPS before ordering the static IP, so the chain has a stable front door.
+- Buy one overseas VPS for the front door. Los Angeles CN2 GIA-E is the tested line, 1 GB for one person and 2 GB for shared use, Ubuntu 24.04, quarterly or annual billing.
+- The user completes login, verification, and payment in person. Stop at the checkout page and read the plan, the region, the billing cycle, and the total to the user before they pay.
+- Record the server IP and the SSH port after install. The root password stays with the user and never enters the conversation.
+- Deploy from the front VPS kit with one command that runs nine stages in order: login setup, base hardening, certificate, proxy node, subscription layer, account API, maintenance, verification, and saving the login file.
+- Keep the pinned versions the kit ships with, and never upgrade the proxy core without testing on a spare machine with real clients first.
+- Use a certificate signed for the server IP, and stop if certificate issue fails instead of falling back to a self signed certificate.
+- After deploy, the VPS offers a proxy node with two subscription identities, one for desktop and router clients and one for phone clients, plus a rule set that sends AI service domains through the AI group and domestic domains direct.
+- Point the static IP at the VPS as its upstream in chained mode, and keep the rule that only the target app uses the chain. Daily traffic keeps the old route.
+- The full front VPS guide, including procurement links, subscription setup, terminal configuration, and the model subscription environment checklist, lives in 前置VPS与静态IP指南.md in this repository.
+- Stop here when the front VPS alone covers the need. Continue to the static IP sections only for the special scenarios above.
+
 ## Fix the requirement before shopping
 
 - Write down what the IP is for, which account region it must match, and which city it should sit in.
@@ -51,19 +75,6 @@
 - After payment, confirm in the provider dashboard that the order is active, and record the assigned IP, the city, the order dates, and the auto renew state.
 
 - Check whether auto renew is on or off. Some providers ship it off, so an expiry date with no renewal means the exit IP disappears unless the user extends it.
-
-## Install the front VPS first
-
-- The static IP chains behind a front VPS that the user owns. Buy and deploy the VPS before ordering the static IP, so the chain has a stable front door.
-- Buy one overseas VPS for the front door. Los Angeles CN2 GIA-E is the tested line, 1 GB for one person and 2 GB for shared use, Ubuntu 24.04, quarterly or annual billing.
-- The user completes login, verification, and payment in person. Stop at the checkout page and read the plan, the region, the billing cycle, and the total to the user before they pay.
-- Record the server IP and the SSH port after install. The root password stays with the user and never enters the conversation.
-- Deploy from the front VPS kit with one command that runs nine stages in order: login setup, base hardening, certificate, proxy node, subscription layer, account API, maintenance, verification, and saving the login file.
-- Keep the pinned versions the kit ships with, and never upgrade the proxy core without testing on a spare machine with real clients first.
-- Use a certificate signed for the server IP, and stop if certificate issue fails instead of falling back to a self signed certificate.
-- After deploy, the VPS offers a proxy node with two subscription identities, one for desktop and router clients and one for phone clients, plus a rule set that sends AI service domains through the AI group and domestic domains direct.
-- Point the static IP at the VPS as its upstream in chained mode, and keep the rule that only the target app uses the chain. Daily traffic keeps the old route.
-- The full front VPS guide, including procurement links, subscription setup, terminal configuration, and the model subscription environment checklist, lives in 前置VPS与静态IP指南.md in this repository.
 
 ## Connect it
 
