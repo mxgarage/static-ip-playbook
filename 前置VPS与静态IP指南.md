@@ -23,7 +23,7 @@ Claude Code / Codex ──▶ VPS 上的 CLIProxyAPI :8318 ──▶ 多个订�
 - 流程：官网选套餐 → Location 选洛杉矶 CN2 GIA-E → 注册登录（本人）→ 结账页停下来核对套餐、机房、周期、总价 → 本人付款 → 服务商后台 KiwiVM：先 Stop → Install new OS 选 ubuntu-24.04 → 等完成 → Start，确认 Running。
 - 拿到手的三样：服务器 IP、SSH 端口（通常不是 22）、root 密码。IP 和端口不是秘密；root 密码只由你自己保存，不进对话、不复述。
 - 提醒：部分厂商有安全组 / 防火墙面板，后面申请证书需要 TCP 80 能从公网访问；搬瓦工默认没有安全组，不用管。
-- 推荐套餐链接（你的邀请链接，价格和直接在官网买一样，通过它下单你会拿到一点返佣，买家没有额外优惠；介意的话直接去 bwh81.net 自己选同款套餐就行）：
+- 推荐套餐链接（你的邀请链接；介意的话直接去 bwh81.net 自己选同款套餐就行）：
   - 1GB（SPECIAL 20G KVM PROMO V5，季付）：https://bwh81.net/aff.php?aff=85145&a=add&pid=87&billingcycle=quarterly
   - 2GB（SPECIAL 40G KVM PROMO V5，季付）：https://bwh81.net/aff.php?aff=85145&a=add&pid=88&billingcycle=quarterly
 
