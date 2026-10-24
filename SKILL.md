@@ -88,6 +88,20 @@
 
 - Keep the old daily route untouched outside the target app. A new IP should change one app's traffic, not the whole device.
 
+## Set up the client
+
+- Use a Mihomo compatible client. Clash Verge Rev covers desktop, Shadowrocket covers iPhone, and OpenClash covers routers.
+
+- Import the subscription address from the front VPS into the client. Do not paste node details by hand when a subscription is available.
+
+- Select rule mode, not global mode and not direct mode. Rule mode sends each domain to its group, and global mode would push domestic traffic through the proxy as well.
+
+- Pick the node group for daily use, and confirm AI service domains land in the AI group.
+
+- Turn TUN on only when an app needs system wide capture. TUN changes the whole device route, so leave it off when only the browser or one app needs the proxy.
+
+- For a phone proxy client without subscription support, add one SOCKS5 node by hand with the server address, the SOCKS5 port, the username, and the password.
+
 ## Health check before using the target account
 
 - Connect through the new IP first, then check the exit from the device itself. Never log into the target account before this check passes.
@@ -103,6 +117,16 @@
 - Recheck after any change to the node, the rules, or the provider order. A passing check from last week does not cover a changed setup.
 
 - Treat any mismatch as a stop condition. Do not log into the target account on a failed check.
+
+- Check latency through the proxy. Ping a target domain through the exit and confirm latency is stable with no sharp spikes or packet loss.
+
+- Check for DNS leaks. Confirm DNS queries follow the proxy rules instead of leaking to the local network resolver.
+
+- Check for WebRTC leaks. Confirm the real device IP does not appear in a WebRTC leak test while the proxy is on.
+
+- Check speed through the proxy. Run a speed test through the exit and compare it with the direct connection, and treat a large unexplained drop as a problem to investigate.
+
+- Check stability over a session. Keep the proxy on for a normal work session and confirm the exit IP stays fixed and the connection does not drop repeatedly.
 
 ## Keep it alive
 
