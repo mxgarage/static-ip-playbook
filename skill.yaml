@@ -1,0 +1,5 @@
+name: "static-ip-playbook"
+title: "Static IP Playbook"
+description: "Procure, verify, connect, health check, and renew a dedicated static residential IP, including direct, split routing, and chained setups."
+category: "Work and knowledge"
+include_in_prompt: true
