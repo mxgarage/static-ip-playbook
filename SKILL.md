@@ -62,6 +62,19 @@
 
 - Check whether auto renew is on or off. Some providers ship it off, so an expiry date with no renewal means the exit IP disappears unless the user extends it.
 
+## Install the front VPS first
+
+- The static IP chains behind a front VPS that the user owns. Buy and deploy the VPS before ordering the static IP, so the chain has a stable front door.
+- Buy one overseas VPS for the front door. Los Angeles CN2 GIA-E is the tested line, 1 GB for one person and 2 GB for shared use, Ubuntu 24.04, quarterly or annual billing.
+- The user completes login, verification, and payment in person. Stop at the checkout page and read the plan, the region, the billing cycle, and the total to the user before they pay.
+- Record the server IP and the SSH port after install. The root password stays with the user and never enters the conversation.
+- Deploy from the front VPS kit with one command that runs nine stages in order: login setup, base hardening, certificate, proxy node, subscription layer, account API, maintenance, verification, and saving the login file.
+- Keep the pinned versions the kit ships with, and never upgrade the proxy core without testing on a spare machine with real clients first.
+- Use a certificate signed for the server IP, and stop if certificate issue fails instead of falling back to a self signed certificate.
+- After deploy, the VPS offers a proxy node with two subscription identities, one for desktop and router clients and one for phone clients, plus a rule set that sends AI service domains through the AI group and domestic domains direct.
+- Point the static IP at the VPS as its upstream in chained mode, and keep the rule that only the target app uses the chain. Daily traffic keeps the old route.
+- The full front VPS guide, including procurement links, subscription setup, terminal configuration, and the model subscription environment checklist, lives in 前置VPS与静态IP指南.md in this repository.
+
 ## Connect it
 
 - Use the direct mode when the device can hold its own proxy node. Add one SOCKS5 node with the server address, the SOCKS5 port, the username, and the password, then select it.
