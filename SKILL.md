@@ -128,6 +128,8 @@
 
 - Check stability over a session. Keep the proxy on for a normal work session and confirm the exit IP stays fixed and the connection does not drop repeatedly.
 
+- If ping0.cc does not load, run the same checks on ipinfo.io and ipapi.is instead, and check IPv4, IPv6, and WebRTC exposure on BrowserLeaks. A page that fails to load is not a failed IP.
+
 ## Keep it alive
 
 - Record the expiry date the day the order activates, and set a renewal reminder a few days before expiry.
@@ -167,6 +169,10 @@
 - [ping0.cc](https://ping0.cc) for an IP health check page. Read the IP type, the native flag, the risk score, the location, and the sharing count from it.
 
 - [ipinfo.io](https://ipinfo.io) for a quick exit check. Confirm the exit IP and city match the order before using the target account.
+
+- [ipapi.is](https://ipapi.is) for a second IP check. Read whether the IP is residential or datacenter, and whether it carries VPN, proxy, or hosting flags.
+
+- [BrowserLeaks](https://browserleaks.com) for leak checks. Read whether IPv4, IPv6, and WebRTC expose an address different from the proxy exit.
 
 ## Alternatives for better results
 
