@@ -1,5 +1,5 @@
 name: "static-ip-playbook"
 title: "Static IP Playbook"
-description: "Install a front VPS, and only add a dedicated static residential IP when the scenario requires one, with direct, split routing, and chained setups."
+description: "Use when setting up a front VPS or dedicated static residential IP, or configuring and migrating Clash Verge Rev subscriptions on Apple Silicon and Intel Macs, including local rules and YAML compatibility errors."
 category: "Work and knowledge"
 include_in_prompt: true

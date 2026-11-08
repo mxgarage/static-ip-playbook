@@ -1,5 +1,7 @@
 # Static IP Playbook
 
+For an existing VPS subscription on an Apple Silicon or Intel Mac, go directly to **Set up the client** and read [Clash Verge Rev macOS setup](clash-verge-rev-macos.md). Client installation or migration does not require another VPS or static IP purchase.
+
 ## Decide whether a static IP is needed
 
 - Deploy the front VPS first. The front proxy alone covers general use, so stop after the front VPS deploy when no special scenario applies.
@@ -92,7 +94,13 @@
 
 - Use a Mihomo compatible client. Clash Verge Rev covers desktop, Shadowrocket covers iPhone, and OpenClash covers routers.
 
+- For macOS, follow [Clash Verge Rev: Apple Silicon and Intel setup](clash-verge-rev-macos.md). Identify the destination Mac's chip in About This Mac: Apple M-series uses `aarch64.dmg`; Intel uses `x64.dmg`. The subscription format is the same for both. Match supported app/core versions when migrating; leave the VPS's pinned server versions unchanged.
+
 - Import the subscription address from the front VPS into the client. Do not paste node details by hand when a subscription is available.
+
+- If the user asks to manually enter a subscription, use **Subscriptions → New → Remote** with the complete private subscription URL, or the subscription-link input and **Import**. Obtain that URL from the existing profile's **Edit info** dialog or the deployment's private login file; a server IP and port alone are not a subscription URL. Use **Local → Choose file** only for a requested YAML-file import. When the user asks for one step at a time, give the next screen and field, then wait for their result.
+
+- The same subscription syncs server-provided content, not device-local rule edits, Merge/Script overrides, DNS overrides, IPv6/TUN settings, mode, or selected group members. Compare those separately using the guide's migration checklist. Keep subscription URLs and node credentials out of public repositories and screenshots.
 
 - Select rule mode, not global mode and not direct mode. Rule mode sends each domain to its group, and global mode would push domestic traffic through the proxy as well.
 
@@ -101,6 +109,8 @@
 - Turn TUN on only when an app needs system wide capture. TUN changes the whole device route, so leave it off when only the browser or one app needs the proxy.
 
 - For a phone proxy client without subscription support, add one SOCKS5 node by hand with the server address, the SOCKS5 port, the username, and the password.
+
+- On `cannot unmarshal !!seq into string`, inspect the reported field and client/core compatibility before changing the server or rewriting YAML. A list under `dns.nameserver-policy` can be valid for Mihomo but unsupported by an older parser. Check the new Mac itself for successful parsing, the expected proxy exit, the intended DIRECT rule, and persistence after subscription refresh and app restart; a test on the source Mac does not verify the destination.
 
 ## Health check before using the target account
 

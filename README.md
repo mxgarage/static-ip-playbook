@@ -15,6 +15,9 @@
 - `SKILL.md`：完整方法。先装前置 VPS，再定需求（国家、城市、静态、独享、住宅/ISP 五项），再比价、下单核验、三种接法（直连、分流、经 VPS 链式转发）、上线前健康检查、到期续命、常见排障。
 - `skill.yaml`：skill 描述文件。
 - `前置VPS与静态IP指南.md`：前置 VPS 采购、订阅、终端配置与模型订阅环境检查的完整指南。
+- [Clash Verge Rev macOS 配置指南](clash-verge-rev-macos.md)：Apple 芯片 / Intel 芯片安装包选择、手动填写远程订阅、本地 YAML 导入、跨电脑配置对齐，以及旧客户端 YAML 解析报错排查。
+
+已有 VPS、只想配置另一台 Mac：直接打开这份 [macOS 指南](clash-verge-rev-macos.md)。两类芯片使用相同订阅，区别在安装包；同一订阅不会自动同步原机的本地覆写规则和代理开关。
 
 ## 使用场景
 
