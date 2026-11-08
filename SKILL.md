@@ -1,6 +1,13 @@
+---
+name: static-ip-playbook
+description: Set up a front VPS or dedicated static exit, configure and migrate Clash Verge Rev on Apple Silicon and Intel Macs, and diagnose AI routing, DNS, TUN conflicts and application-specific network health.
+---
+
 # Static IP Playbook
 
 For an existing VPS subscription on an Apple Silicon or Intel Mac, go directly to **Set up the client** and read [Clash Verge Rev macOS setup](clash-verge-rev-macos.md). Client installation or migration does not require another VPS or static IP purchase.
+
+For network-health checks, GPT/Claude exit consistency, DNS/WebRTC questions, or a TUN switch that disagrees with actual traffic, read [Network health and AI routing](network-health-check.md). Start with the existing deployment; a model subscription alone does not establish a need to buy residential IP service.
 
 ## Decide whether a static IP is needed
 
@@ -30,7 +37,7 @@ For an existing VPS subscription on an Apple Silicon or Intel Mac, go directly t
 
 - Write down what the IP is for, which account region it must match, and which city it should sit in.
 
-- Require these five properties for an account recovery or account operation IP: country matches the account region, static across sessions, residential or ISP type and never datacenter, dedicated to one buyer, and one fixed city.
+- When the requirement explicitly calls for a dedicated residential/ISP exit, check country, stability across sessions, IP type, exclusivity, and the requested city. These are procurement criteria for that scenario, not universal account-recovery requirements or a guarantee of service eligibility.
 
 - Prefer a city that already matches the account history, such as a past login city or an existing server city, over a random assignment.
 
@@ -106,7 +113,11 @@ For an existing VPS subscription on an Apple Silicon or Intel Mac, go directly t
 
 - Pick the node group for daily use, and confirm AI service domains land in the AI group.
 
+- When the user needs a fixed AI exit, select a verified concrete node and inspect the complete chain; automatic selection or fallback groups can change the exit. Apply targeted DNS changes through the current profile's script without replacing unrelated policies. Use the [tested workflow and example](network-health-check.md#5-ai-的-dns-也要验证但不要覆盖整个-dns-表).
+
 - Turn TUN on only when an app needs system wide capture. TUN changes the whole device route, so leave it off when only the browser or one app needs the proxy.
+
+- Verify TUN using live core state, contemporaneous logs and routes. UI and saved `tun.enable` values alone are insufficient. For route conflicts, preserve enterprise VPN/security settings and report applications that remain uncovered; do not delete unknown routes or bypass managed network controls.
 
 - For a phone proxy client without subscription support, add one SOCKS5 node by hand with the server address, the SOCKS5 port, the username, and the password.
 
@@ -114,31 +125,23 @@ For an existing VPS subscription on an Apple Silicon or Intel Mac, go directly t
 
 ## Health check before using the target account
 
-- Connect through the new IP first, then check the exit from the device itself. Never log into the target account before this check passes.
+- Use [Network health and AI routing](network-health-check.md) to distinguish configuration intent, live core state, actual request paths, and account access. Back up locally, change only justified settings, and preserve concurrent user edits during rollback.
 
-- Confirm the exit IP equals the assigned IP, and confirm the city and region match the order.
+- Test the actual target device and application. Compare an explicit Clash proxy request, the operating-system route, and the intended browser; a managed or cloud browser may have its own exit. `--noproxy '*'` does not bypass an OS VPN.
 
-- Confirm the IP type reads residential or home broadband, and confirm it is not flagged as hosting or datacenter.
+- Confirm target domains hit the intended group and final node, then compare the exit IP with the assigned exit. Recheck after reconnecting, subscription refresh and client restart; state which checks actually ran.
 
-- Confirm the risk score is low, the IP is native to its region, and the sharing count is small.
+- A VPS normally has a hosting/datacenter classification. Evaluate it against the requested deployment, not a universal residential-IP rule. Record location-source disagreements rather than asserting a precise physical city.
 
-- Disconnect and reconnect, then confirm the exit IP is unchanged. A changed IP fails the static requirement.
+- Risk scores and sharing counts are optional third-party evidence, not service approval. If ping0.cc or a field is unavailable, mark it unknown; IPinfo or ipapi.is can supply other fields but cannot fill in missing scores. Do not infer a failed IP from a failed website.
 
-- Recheck after any change to the node, the rules, or the provider order. A passing check from last week does not cover a changed setup.
+- Check AI-specific DNS paths and IPv4/IPv6/WebRTC in each actual application. Resolver counts or countries alone do not prove a leak. Disabling Mihomo's AAAA answers does not disable OS IPv6 or cover applications bypassing the core.
 
-- Treat any mismatch as a stop condition. Do not log into the target account on a failed check.
+- Measure proxy request latency, throughput and stability over a representative period. Ordinary ICMP ping does not automatically use an HTTP proxy; a few successful latency tests do not measure packet loss or long-term stability.
 
-- Check latency through the proxy. Ping a target domain through the exit and confirm latency is stable with no sharp spikes or packet loss.
+- HTTPS success only proves that request. A Cloudflare challenge is not an account verdict; HTTP 405 at an API root is not a DNS failure. Report login/model access only after those workflows have actually been verified, with normal account authorization.
 
-- Check for DNS leaks. Confirm DNS queries follow the proxy rules instead of leaking to the local network resolver.
-
-- Check for WebRTC leaks. Confirm the real device IP does not appear in a WebRTC leak test while the proxy is on.
-
-- Check speed through the proxy. Run a speed test through the exit and compare it with the direct connection, and treat a large unexplained drop as a problem to investigate.
-
-- Check stability over a session. Keep the proxy on for a normal work session and confirm the exit IP stays fixed and the connection does not drop repeatedly.
-
-- If ping0.cc does not load, run the same checks on ipinfo.io and ipapi.is instead, and check IPv4, IPv6, and WebRTC exposure on BrowserLeaks. A page that fails to load is not a failed IP.
+- Resolve a confirmed mismatch before relying on the required path. Keep unknown measurements distinct from confirmed failures, and never promise registration, reinstatement or immunity from account restrictions.
 
 ## Keep it alive
 

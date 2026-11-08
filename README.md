@@ -16,8 +16,12 @@
 - `skill.yaml`：skill 描述文件。
 - `前置VPS与静态IP指南.md`：前置 VPS 采购、订阅、终端配置与模型订阅环境检查的完整指南。
 - [Clash Verge Rev macOS 配置指南](clash-verge-rev-macos.md)：Apple 芯片 / Intel 芯片安装包选择、手动填写远程订阅、本地 YAML 导入、跨电脑配置对齐，以及旧客户端 YAML 解析报错排查。
+- [网络健康检查与 AI 固定出口](network-health-check.md)：区分配置与实际流量、TUN 路由冲突、企业网络共存、DNS / IPv6 / WebRTC 检查，以及 HTTP 状态和 IP 评分的判断边界。
+- [AI DNS 增强脚本示例](examples/ai-dns-profile.js)：按当前订阅追加 AI DNS 策略，保留其他域名与 IPv6 设置；使用前按检查指南核对前提。可用 `node --test tests/ai-dns-profile.test.cjs` 验证示例行为。
 
 已有 VPS、只想配置另一台 Mac：直接打开这份 [macOS 指南](clash-verge-rev-macos.md)。两类芯片使用相同订阅，区别在安装包；同一订阅不会自动同步原机的本地覆写规则和代理开关。
+
+已有配置、想检查 GPT / Claude 网络：直接使用 [健康检查指南](network-health-check.md)。VPS 被识别为机房 IP 不自动等于“不健康”，住宅 IP 也不保证账号资格；先验证实际应用的出口，再决定是否需要调整。
 
 ## 使用场景
 

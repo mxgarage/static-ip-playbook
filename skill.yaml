@@ -1,5 +1,5 @@
 name: "static-ip-playbook"
 title: "Static IP Playbook"
-description: "Use when setting up a front VPS or dedicated static residential IP, or configuring and migrating Clash Verge Rev subscriptions on Apple Silicon and Intel Macs, including local rules and YAML compatibility errors."
+description: "Set up a front VPS or dedicated static exit, configure and migrate Clash Verge Rev on Apple Silicon and Intel Macs, and diagnose AI routing, DNS, TUN conflicts and application-specific network health."
 category: "Work and knowledge"
 include_in_prompt: true
